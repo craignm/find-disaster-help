@@ -1,0 +1,100 @@
+'use strict';
+
+init();
+
+// var questions = [
+//     { id: '1',
+//       text: 
+//       responses: [
+//         {label: 'No',
+// 	 todos: []
+// 	},
+//         {label: 'Yes'},
+// 	todos: ['Submit a claim to your private insurance plan',
+// 		'Sunmit application for FEMA assisantce. Complete the application as best you can given your
+// 	]
+//     },
+
+function init() {
+  askQuestions();
+  createPrintedPage();
+}
+
+function askQuestions() {
+  ask('Have you experiences losses related to Hurricane Sandy?',
+      askLosses);
+}
+
+function askLosses(response) {
+  if (!response) {
+    addToDo('If you are still in need of assistance, call xxx to speak with a social worker');
+    return;
+  }
+
+  ask('Do you have private property insurance?', askPropertyInsurance);
+}
+
+function askPropertyInsurance(response) {
+  if (response) {
+    addToDo('Submit a claim to your private insurance plan for any eligible damages. ' +
+	    'You do not have to hear back to move onto the next steps, ' +
+	    'but you must initiate the insurance process.');
+
+    addToDo('Submit application for FEMA assistance.' +
+	    'Complete the application as best you can given your current insurance ' +
+	    'coverage information',
+	    'http://www.disasterassistance.gov');
+  } else {
+    addToDo('Submit application for FEMA assistance.' +
+	    'Complete the application as best you can.',
+	    'http://www.disasterassistance.gov');
+  }
+
+  addToDo('Apply for low-interest Disaster Loans through the Small Business Administration. ' +
+	  'You do not have to take any loan offered to you, ' +
+	  'but you must initiate the application process',
+	  'http://disasterloan.sba.gov/ela');
+
+  ask('Have you lost work, time employment, or income due to the hurricane?', askIncome);
+}
+
+function askIncome(response) {
+  if (response) {
+    ask('Do you live in New York State?', askNewYork);
+  }
+}
+
+function askNewYork(response) {
+  if (response) {
+    addToDo('Apply for Disaster Unemployment Assistance (DUA).',
+	    'http://www.labor.ny.gov/ui/claimantinfo/disaster-unemploymentassistance.shtm');
+  }
+  // TODO: anything for other states?
+}
+
+function askHealth(response) {
+  if (response) {
+    addToDo('Apply for Family Health Plus', 'https://a858-ihss.nyc.gov/');
+
+    ask('Are you eligible for Medicaid?');
+    if (medicaid) {
+      addToDo('Apply for Medicaid', 'https://a858-ihss.nyc.gov/');
+    }
+
+    var children = ask('Do you have children?');
+    if (children) {
+      addToDo('Apply for Child Health Plus', 'https://a858-ihss.nyc.gov/');
+    }
+  }
+
+  var legal = ask('Are you experiencing any of the following: <ul>' +
+		  '<li>problems with mortgage or creditors' + 
+		  '<li>problems with insurance claims' + 
+		  '<li>tenant/landlord disputes');
+
+  if (legal) {
+    addToDo('Seek legal assistance from a pro bono provider. ' + 
+	    '(e.g., NYLAG Storm Response Unit)',
+	    'http://nylag.org/units/stormresponse-unit/');S
+  }
+}
