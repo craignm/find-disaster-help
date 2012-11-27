@@ -1,10 +1,10 @@
-.questions {
+#questions {
   height: 200px;
-  width: 500px;
+  width: 400px;
   background-color: #ddd;
 }
 
-.actions {
+#actions {
   height: 200px;
   width: 400px;
   border: solid 1px gray;
