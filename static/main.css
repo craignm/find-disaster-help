@@ -8,3 +8,23 @@
   height: 200px;
   width: 400px;
 }
+
+.no-button {
+  color: red;
+}
+
+.yes-button {
+  color: green;
+}
+
+.question {
+  color: blue
+}
+
+.action-text {
+  color: magenta;
+}
+
+.action-url {
+  color: cyan;
+}

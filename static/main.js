@@ -100,6 +100,7 @@ function ask(message, questionId) {
   }
 
   var yesButton = $('<button>')
+    .addClass('yes-button')
     .text('Yes')
     .click(function() {
 	answers[questionId] = true;
@@ -107,6 +108,7 @@ function ask(message, questionId) {
       });
 
   var noButton = $('<button>')
+    .addClass('no-button')
     .text('No')
     .click(function() {
 	answers[questionId] = false;
@@ -115,7 +117,8 @@ function ask(message, questionId) {
 
   $('#questions')
     .empty()
-    .append($('<div>').html(message))
+    .append($('<div>').html(message)
+	    .addClass('question'))
     .append(yesButton)
     .append(noButton);
   
@@ -148,9 +151,14 @@ function displayActions() {
 
   for (var i = 0; i < actionList.length; ++i) {
     var newAction = $('<li>');
-    newAction.append($('<div>').text(actionList[i].message));
+    newAction.append($('<div>')
+		     .addClass('action-text')
+		     .text(actionList[i].message));
     if (actionList[i].url != '') {
-      newAction.append($('<a>').attr('href', actionList[i].url));
+      newAction.append($('<a>')
+		       .addClass('action-url')
+		       .text(actionList[i].url)
+		       .attr('href', actionList[i].url));
     }
     ol.append(newAction);
   }
