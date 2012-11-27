@@ -8,7 +8,6 @@ function askQuestions() {
   clearActionList();
 
   if (!ask('Have you experienced losses related to Hurricane Sandy?', 'losses')) {
-    console.log('giving up');
     return;
   }
   
