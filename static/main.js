@@ -125,10 +125,10 @@ function ask(message, questionId) {
     .append(yesButton)
     .append(noButton);
 
-  outerHeight = $('.question').outerHeight();
-  $('.question').css({
-    'margin-top' : -parseInt(outerHeight/2)
-  });
+  // outerHeight = $('.question').outerHeight();
+  // $('.question').css({
+  //   'margin-top' : -parseInt(outerHeight/2)
+  // });
 
   return false;
 }
