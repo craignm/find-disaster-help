@@ -20,6 +20,10 @@ body{
   color:#222;
 }
 
+.button:active{
+
+}
+
 #wrap{
   width:320px;
   height:480px;
