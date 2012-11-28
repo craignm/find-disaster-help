@@ -22,8 +22,7 @@ body{
 }
 
 .button:active{
-  box-shadow:inset 0 2px 3px rgba(0,0,0,0.35);
-  background:#eee;
+  box-shadow:inset 0 2px 3px rgba(0,0,0,0.5);
 }
 
 #wrap{
@@ -87,9 +86,17 @@ body{
 }
 
 .no-button {
+  background:-webkit-linear-gradient(#f56534, #c85230);
+  border:1px solid #8f361f;
+  text-shadow:0 1px 1px #000;
+  color:#fff;
 }
 
 .yes-button {
+  background:-webkit-linear-gradient(#9ac138, #83a342);
+  color:#fff;
+  border:1px solid #5d742c;
+  text-shadow:0 1px 1px #000;
 }
 
 .question {
