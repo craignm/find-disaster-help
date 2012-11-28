@@ -46,11 +46,12 @@ body{
 }
 
 #cart h1{
-  text-align:center;
   font-family:'Share Tech', sans-serif;
-  margin:10px 0;
+  padding:10px 20px;
   font-size:23px;
   letter-spacing:-2px;
+  border-right:1px solid #ddd;
+  display:inline-block;
 }
 
 #content{
@@ -64,12 +65,12 @@ body{
   bottom:0;
   left:0;
   width:100%;
-  background:#fff;
+  background:#fff url(images/gray_jean.png) left top repeat;
   border-top:1px solid #aaa;
   z-index:10;
   padding:10px 0;
   text-align:center;
-  box-shadow:0 0 8px rgba(0,0,0,0.15);
+  box-shadow:inset 0 2px 3px rgba(0,0,0,0.15);
   font-family:'Share Tech', sans-serif;
 }
 
