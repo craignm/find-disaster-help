@@ -146,5 +146,14 @@ body{
 .action-url {
 }
 
+<<<<<<< HEAD
 
 
+=======
+@font-face {
+  font-family: 'Share Tech';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Share Tech'), local('ShareTech-Regular'), url(sharetech.ttf) format('truetype');
+}
+>>>>>>> 39d8e23be9c710c155decaadcc4cb2e39f0ac473
