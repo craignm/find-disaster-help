@@ -10,7 +10,7 @@ function askQuestions() {
   if (!ask('Have you experienced losses related to Hurricane Sandy?', 'losses')) {
     return;
   }
-  
+
   if (!answers.losses) {
     addAction('If you are still in need of assistance, call xxx to speak with a social worker');
     return;
@@ -19,7 +19,7 @@ function askQuestions() {
   if (!ask('Do you have private property insurance?', 'propertyIinsurance')) {
     return;
   }
-  
+
   if (answers.propertyInsurance) {
     addAction('Submit a claim to your private insurance plan for any eligible damages. ' +
 	    'You do not have to hear back to move onto the next steps, ' +
@@ -54,7 +54,7 @@ function askQuestions() {
 
     // TODO: anything for other states?
   }
-  
+
   if (!ask('Have you lost health insurance due to the hurricane?', 'health')) {
     return;
   }
@@ -77,15 +77,15 @@ function askQuestions() {
   }
 
   if (!ask('Are you experiencing any of the following: <ul>' +
-	   '<li>problems with mortgage or creditors' + 
-	   '<li>problems with insurance claims' + 
+	   '<li>problems with mortgage or creditors' +
+	   '<li>problems with insurance claims' +
 	   '<li>tenant/landlord disputes',
 	   'legal')) {
     return;
   }
 
   if (answers.legal) {
-    addAction('Seek legal assistance from a pro bono provider. ' + 
+    addAction('Seek legal assistance from a pro bono provider. ' +
 	    '(e.g., NYLAG Storm Response Unit)',
 	    'http://nylag.org/units/stormresponse-unit/');
   }
@@ -98,7 +98,7 @@ function ask(message, questionId) {
     return true;
   }
 
-  var yesButton = $('<button>')
+  var yesButton = $('<a class="button">')
     .addClass('yes-button')
     .text('Yes')
     .click(function() {
@@ -106,7 +106,7 @@ function ask(message, questionId) {
 	askQuestions();
       });
 
-  var noButton = $('<button>')
+  var noButton = $('<a class="button">')
     .addClass('no-button')
     .text('No')
     .click(function() {
@@ -114,13 +114,20 @@ function ask(message, questionId) {
 	askQuestions();
       });
 
-  $('#questions')
+  $('#content')
     .empty()
     .append($('<div>').html(message)
-	    .addClass('question'))
+    .addClass('question'));
+  $('#controls')
+    .empty()
     .append(yesButton)
     .append(noButton);
-  
+
+  outerHeight = $('.question').outerHeight();
+  $('.question').css({
+    'margin-top' : -parseInt(outerHeight/2)
+  });
+
   return false;
 }
 
@@ -137,7 +144,7 @@ function addAction(message, urlParam) {
   }
 
   actionList.push({ message: message, url: url });
-  
+
   displayActions();
 }
 

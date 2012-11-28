@@ -1,31 +1,103 @@
+*{
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:'georgia', serif;
+}
+
+.button{
+  border:1px solid #aaa;
+  background:-webkit-linear-gradient(#fff, #eee);
+  text-align:center;
+  border-radius:2px;
+  display:inline-block;
+  padding:15px 57px;
+  font-size:20px;
+  font-weight:bold;
+  text-decoration: none;
+  color:#222;
+}
+
+#wrap{
+  width:320px;
+  height:480px;
+  overflow:hidden;
+  position:relative;
+  border:1px solid #333;
+  margin:15px;
+}
+
+#cart{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  border-bottom:1px solid #aaa;
+  min-height:50px;
+  z-index:10;
+  background:#fff;
+  box-shadow:0 0 8px rgba(0,0,0,0.15);
+}
+
+#cart h1{
+  text-align:center;
+}
+
+#content{
+  position:relative;
+  z-index:1;
+  height:100%;
+}
+
+#controls{
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:#fff;
+  border-top:1px solid #aaa;
+  z-index:10;
+  padding:10px 0;
+  text-align:center;
+  box-shadow:0 0 8px rgba(0,0,0,0.15);
+}
+
+#controls .button{
+  margin:0 3px;
+}
+
 #questions {
-  height: 200px;
-  width: 400px;
-  background-color: #ddd;
 }
 
 #actions {
-  height: 200px;
-  width: 400px;
-  border: solid 1px gray;
 }
 
 .no-button {
-  color: red;
 }
 
 .yes-button {
-  color: green;
 }
 
 .question {
-  color: blue
+  font-size:22px;
+  line-height:30px;
+  position:absolute;
+  top:50%;
+  margin:0 15px;
+}
+
+.question ul{
+  margin:15px 0 0 35px;
+}
+
+.question li{
+  margin-bottom:10px;
 }
 
 .action-text {
-  color: magenta;
 }
 
 .action-url {
-  color: cyan;
 }
