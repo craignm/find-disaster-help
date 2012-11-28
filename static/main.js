@@ -98,21 +98,23 @@ function ask(message, questionId) {
     return true;
   }
 
-  var yesButton = $('<a class="button">')
+  var yesButton = $('<a href="#" class="button">')
     .addClass('yes-button')
     .text('Yes')
     .click(function() {
-	answers[questionId] = true;
-	askQuestions();
-      });
+      event.preventDefault();
+      answers[questionId] = true;
+      askQuestions();
+    });
 
-  var noButton = $('<a class="button">')
+  var noButton = $('<a href="#" class="button">')
     .addClass('no-button')
     .text('No')
     .click(function() {
-	answers[questionId] = false;
-	askQuestions();
-      });
+      event.preventDefault();
+      answers[questionId] = false;
+      askQuestions();
+    });
 
   $('#content')
     .empty()
