@@ -1,7 +1,9 @@
 'use strict';
 
 var answers = {};
+var actions = [];
 
+initializeActions();
 askQuestions();
 
 function askQuestions() {
@@ -12,7 +14,7 @@ function askQuestions() {
   }
 
   if (!answers.losses) {
-    addAction('If you are still in need of assistance, call xxx to speak with a social worker');
+    addAction(0);
     createPrintedPage();
     return;
   }
@@ -22,23 +24,13 @@ function askQuestions() {
   }
 
   if (answers.propertyInsurance) {
-    addAction('Submit a claim to your private insurance plan for any eligible damages. ' +
-	    'You do not have to hear back to move onto the next steps, ' +
-	    'but you must initiate the insurance process.');
-
-    addAction('Submit application for FEMA assistance.' +
-	    'Complete the application as best you can given your current insurance ' +
-	    'coverage information',
-	    'http://www.disasterassistance.gov');
+    addAction(1);
+    addAction(2);
   } else {
-    addAction('Submit application for FEMA assistance. ',
-	    'http://www.disasterassistance.gov');
+    addAction(3);
   }
 
-  addAction('Apply for low-interest Disaster Loans through the Small Business Administration. ' +
-	  'You do not have to take any loan offered to you, ' +
-	  'but you must initiate the application process',
-	  'http://disasterloan.sba.gov/ela');
+  addAction(4);
 
   if (!ask('Have you lost work, time employment, or income due to the hurricane?', 'income')) {
     return;
@@ -49,8 +41,7 @@ function askQuestions() {
       return;
     }
     if (answers.newYork) {
-      addAction('Apply for Disaster Unemployment Assistance (DUA).',
-	      'http://www.labor.ny.gov/ui/claimantinfo/disaster-unemploymentassistance.shtm');
+      addAction(5);
     }
 
     // TODO: anything for other states?
@@ -60,20 +51,20 @@ function askQuestions() {
     return;
   }
   if (answers.health) {
-    addAction('Apply for Family Health Plus', 'https://a858-ihss.nyc.gov/');
+    addAction(6);
 
     if (!ask('Are you eligible for Medicaid?', 'medicaid')) {
       return;
     }
     if (answers.medicaid) {
-      addAction('Apply for Medicaid', 'https://a858-ihss.nyc.gov/');
+      addAction(7);
     }
 
     if (!ask('Do you have children?', 'children')) {
       return;
     }
     if (answers.children) {
-      addAction('Apply for Child Health Plus', 'https://a858-ihss.nyc.gov/');
+      addAction(8);
     }
   }
 
@@ -86,9 +77,7 @@ function askQuestions() {
   }
 
   if (answers.legal) {
-    addAction('Seek legal assistance from a pro bono provider. ' +
-	    '(e.g., NYLAG Storm Response Unit)',
-	    'http://nylag.org/units/stormresponse-unit/');
+    addAction(9);
   }
 
   createPrintedPage();
@@ -136,15 +125,59 @@ function clearActionList() {
   actionList = [];
 }
 
-function addAction(message, urlParam) {
-  var url = '';
-  if (urlParam !== undefined) {
-    url = urlParam;
-  }
-
-  actionList.push({ message: message, url: url });
+function addAction(messageNum) {
+  actionList.push(messageNum);
 
   displayActions();
+}
+
+function initializeActions() {
+  actions[0] = 
+    'If you are still in need of assistance, call xxx to speak with a social worker';
+  
+  actions[1] = 
+    'Submit a claim to your private insurance plan for any eligible damages. ' +
+    'You do not have to hear back to move onto the next steps, ' +
+    'but you must initiate the insurance process.';
+  
+  actions[2] = 
+    'Submit application for ' +
+    '<a href="http://www.disasterassistance.gov">' +
+    'FEMA assistance</a>. ' +
+    'Complete the application as best you can given your current insurance ' +
+    'coverage information';
+  
+  actions[3] = 
+    'Submit application for ' +
+    '<a href="http://www.disasterassistance.gov">' +
+    'FEMA assistance</a>. ';
+  
+  actions[4] = 
+    'Apply for ' +
+    '<a href="http://disasterloan.sba.gov/ela">' +
+    'low-interest Disaster Loans</a>' +
+    ' through the Small Business Administration.'
+    'You do not have to take any loan offered to you, ' +
+    'but you must initiate the application process';
+  
+  actions[5] = 
+    'Apply for ' +
+    '<a href="http://www.labor.ny.gov/ui/claimantinfo/disaster-unemploymentassistance.shtm">' +
+    'Disaster Unemployment Assistance (DUA)</a>.';
+  
+  actions[6] = 
+    'Apply for <a href="https://a858-ihss.nyc.gov/">Family Health Plus</a>.';
+  
+  actions[7] = 
+    'Apply for <a href="https://a858-ihss.nyc.gov/">Medicaid</a>.';
+  
+  actions[8] = 
+    'Apply for <a href="https://a858-ihss.nyc.gov/">Child Health Plus</a>.';
+  
+  actions[9] =
+    'Seek legal assistance from a pro bono provider. ' +
+    '(e.g., <a href="http://nylag.org/units/stormresponse-unit/">' +
+    'NYLAG Storm Response Unit</a>)';
 }
 
 function displayActions() {
@@ -153,25 +186,16 @@ function displayActions() {
   $('#actions')
     .empty()
     .append(ol);
-
+  
   for (var i = 0; i < actionList.length; ++i) {
-    var newAction = $('<li>');
-    newAction.append($('<div>')
-		     .addClass('action-text')
-		     .text(actionList[i].message));
-    if (actionList[i].url != '') {
-      newAction.append($('<a>')
-		       .addClass('action-url')
-		       .text(actionList[i].url)
-		       .attr('href', actionList[i].url));
-    }
-    ol.append(newAction);
-
+    ol.append($('<li>')
+	      .addClass('action-text')
+	      .html(actions[actionList[i]]));
   }
 }
 
 function createPrintedPage() {
   $('#actions').animate({
-    'left' : 0
+      'left' : 0
   }, 500);
 }
