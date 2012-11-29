@@ -13,6 +13,7 @@ function askQuestions() {
 
   if (!answers.losses) {
     addAction('If you are still in need of assistance, call xxx to speak with a social worker');
+    createPrintedPage();
     return;
   }
 
@@ -30,7 +31,7 @@ function askQuestions() {
 	    'coverage information',
 	    'http://www.disasterassistance.gov');
   } else {
-    addAction('Submit application for FEMA assistance. ' +
+    addAction('Submit application for FEMA assistance. ',
 	    'http://www.disasterassistance.gov');
   }
 
@@ -93,6 +94,7 @@ function askQuestions() {
   createPrintedPage();
 }
 
+// Returns true if the question has already been answered.
 function ask(message, questionId) {
   if (answers[questionId] !== undefined) {
     return true;
@@ -124,11 +126,6 @@ function ask(message, questionId) {
     .empty()
     .append(yesButton)
     .append(noButton);
-
-  // outerHeight = $('.question').outerHeight();
-  // $('.question').css({
-  //   'margin-top' : -parseInt(outerHeight/2)
-  // });
 
   return false;
 }
@@ -169,9 +166,12 @@ function displayActions() {
 		       .attr('href', actionList[i].url));
     }
     ol.append(newAction);
+
   }
 }
 
 function createPrintedPage() {
-  $('#questions').hide();
+  $('#actions').animate({
+    'left' : 0
+  }, 500);
 }
