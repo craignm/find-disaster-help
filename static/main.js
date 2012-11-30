@@ -131,10 +131,19 @@ function ask(message, questionId) {
     .append(yesButton)
     .append(noButton);
 
-  var offsetWidth = $(window).width();
-  $('#actions').css({
-    'left' : offsetWidth
+  function getOffset() {
+    var offsetWidth = $(window).width();
+    $('#actions').css({
+      'left' : offsetWidth
+    });
+  }
+
+  $(window).resize(function(){
+    getOffset();
   });
+
+  getOffset();
+
   return false;
 }
 
