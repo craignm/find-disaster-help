@@ -46,7 +46,7 @@ body{
 }
 
 #cart{
-  position:absolute;
+  position:fixed;
   background:#fff;
   top:0;
   left:0;
@@ -75,7 +75,7 @@ body{
 }
 
 .counter .placeholder{
-  padding:15px 6px;
+  padding:15px 10px 15px 6px;
   display:block;
 }
 
@@ -106,7 +106,7 @@ body{
 }
 
 #controls{
-  position:absolute;
+  position:fixed;
   bottom:0;
   left:0;
   width:100%;
@@ -137,6 +137,11 @@ body{
   height:100%;
   z-index:9;
   background:#fff;
+  -webkit-overflow-scrolling: touch;
+}
+
+#actions a{
+  color:#;
 }
 
 #actions ol{
@@ -183,9 +188,8 @@ body{
 }
 
 @media screen and (max-width: 320px) {
-  #cart, #controls{
-    position:fixed;
-  }
+
+
   #wrap {
     width:320px;
     height:480px;
@@ -202,7 +206,19 @@ body{
     left:320px;
     overflow-y:scroll;
     overflow-x:hidden;
-    -webkit-overflow-scrolling: touch;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  #content .question{
+    font-size:39px;
+    margin:93px auto 0;
+    width:500px;
+    line-height:52px;
+  }
+
+  #actions {
+
   }
 }
 
