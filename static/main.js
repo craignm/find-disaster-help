@@ -212,7 +212,7 @@ function printActions() {
   var bookmarkDiv = $('<div>')
     .addClass('bookmark')
     .html('To get back here: ' +
-	  '<span class=bookmark-span>finddisasterhelp.com/#' + 
+	  '<span class=bookmark-span>finddisasterhelp.com/#' +
 	  hash + '</span>');
 
   $('#actions')

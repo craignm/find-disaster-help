@@ -141,13 +141,7 @@ body{
 }
 
 #actions a{
-  background:-webkit-linear-gradient(#9ac138, #83a342);
-  color:#fff;
-  border:1px solid #5d742c;
-  text-shadow:0 1px 1px #000;
-  text-decoration: none;
-  padding:1px 3px;
-  border-radius:2px;
+  color:#536829;
 }
 
 #actions a:active{
@@ -155,13 +149,23 @@ body{
 }
 
 #actions ol{
-  padding:65px 15px 15px 39px;
+  margin:65px 15px 15px 39px;
   font-weight:bold;
 }
 
 .bookmark {
   margin-left: 18px;
   margin-bottom: 65px;
+}
+
+.bookmark span{
+  background:-webkit-linear-gradient(#9ac138, #83a342);
+  color:#fff;
+  border:1px solid #5d742c;
+  text-shadow:0 1px 1px #000;
+  text-decoration: none;
+  padding:1px 3px;
+  border-radius:2px;
 }
 
 #actions li{
@@ -235,6 +239,19 @@ body{
   .question ul{
     margin-top:18px;
   }
+
+  #actions{
+    font-size:18px;
+
+  }
+
+  #actions ol{
+    margin-left:55px;
+  }
+
+  .bookmark{
+    margin-left:55px;
+  }
 }
 
 @media screen and (-webkit-min-device-pixel-ratio: 1.5) {
@@ -248,5 +265,3 @@ body{
     background-size: 150px 150px;
   }
 }
-
-
