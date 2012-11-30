@@ -210,7 +210,10 @@ function printActions() {
   var hash = VERSION + toAlpha(actionList);
   window.location.hash = hash;
   var bookmarkDiv = $('<div>')
-    .text('To get back to this action list, use this URL: finddisasterhelp.com/#' + hash);
+    .addClass('bookmark')
+    .html('To get back here: ' +
+	  '<span class=bookmark-span>finddisasterhelp.com/#' + 
+	  hash + '</span>');
 
   $('#actions')
     .empty()

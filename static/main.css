@@ -155,8 +155,13 @@ body{
 }
 
 #actions ol{
-  padding:65px 15px 65px 39px;
+  padding:65px 15px 15px 39px;
   font-weight:bold;
+}
+
+.bookmark {
+  margin-left: 18px;
+  margin-bottom: 65px;
 }
 
 #actions li{
