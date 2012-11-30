@@ -198,16 +198,21 @@ function initializeActions() {
 function printActions() {
   var ol = $('<ol>');
 
+  var hash = VERSION + toAlpha(actionList);
+  window.location.hash = hash;
+  var bookmarkDiv = $('<div>')
+    .text('To get back to this action list, use this URL: finddisasterhelp.com/#' + hash);
+
   $('#actions')
     .empty()
-    .append(ol);
+    .append(ol)
+    .append(bookmarkDiv);
 
   for (var i = 0; i < actionList.length; ++i) {
     ol.append($('<li>')
 	      .addClass('action-text')
 	      .html(actions[actionList[i]]));
   }
-  window.location.hash = VERSION + toAlpha(actionList);
 
   $('#actions').animate({
       'left' : 0
