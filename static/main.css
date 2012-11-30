@@ -135,6 +135,7 @@ body{
   width:100%;
   height:100%;
   z-index:9;
+  line-height:26px;
   background:#fff;
   -webkit-overflow-scrolling: touch;
 }
@@ -145,7 +146,7 @@ body{
   border:1px solid #5d742c;
   text-shadow:0 1px 1px #000;
   text-decoration: none;
-  padding:2px 3px;
+  padding:1px 3px;
   border-radius:2px;
 }
 
@@ -228,6 +229,18 @@ body{
 
   .question ul{
     margin-top:18px;
+  }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 1.5) {
+  #content{
+    background:#fff url(images/linedpaper_2x.png) left top repeat;
+    background-size: 412px 300px;
+  }
+
+  #controls{
+    background:#fff url(images/gray_jean_2x.png) left top repeat;
+    background-size: 150px 150px;
   }
 }
 
