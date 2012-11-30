@@ -2,40 +2,55 @@
 
 var answers = {};
 var actions = [];
+var actionList = [];
+
+var VERSION = 'a'; // for future expansion
 
 initializeActions();
-askQuestions();
+checkHash();
+window.onhashchange = checkHash;
 
-function askQuestions() {
+function checkHash() {
   clearActionList();
 
+  if (window.location.hash === undefined || 
+      window.location.hash == '') {
+    askQuestions();
+  } else {
+    setActionListFromHash();
+    printActions();
+  }
+}
+
+function askQuestions() {
+  
   if (!ask('Have you experienced losses related to Hurricane Sandy?', 'losses')) {
     return;
   }
-
+  
   if (!answers.losses) {
     addAction(0);
-    createPrintedPage();
+    printActions();
     return;
   }
-
+  
   if (!ask('Do you have private property insurance?', 'propertyIinsurance')) {
     return;
   }
-
+  
   if (answers.propertyInsurance) {
     addAction(1);
     addAction(2);
   } else {
     addAction(3);
   }
-
+  
   addAction(4);
-
+  
   if (!ask('Have you lost work, time employment, or income due to the hurricane?', 'income')) {
     return;
   }
-
+  
   if (answers.income) {
     if (!ask('Do you live in New York State?', 'newYork')) {
       return;
@@ -43,16 +58,16 @@ function askQuestions() {
     if (answers.newYork) {
       addAction(5);
     }
-
+    
     // TODO: anything for other states?
   }
-
+  
   if (!ask('Have you lost health insurance due to the hurricane?', 'health')) {
     return;
   }
   if (answers.health) {
     addAction(6);
-
+    
     if (!ask('Are you eligible for Medicaid?', 'medicaid')) {
       return;
     }
@@ -67,7 +82,7 @@ function askQuestions() {
       addAction(8);
     }
   }
-
+  
   if (!ask('Are you experiencing any of the following: <ul>' +
 	   '<li>problems with mortgage or creditors' +
 	   '<li>problems with insurance claims' +
@@ -75,12 +90,12 @@ function askQuestions() {
 	   'legal')) {
     return;
   }
-
+  
   if (answers.legal) {
     addAction(9);
   }
-
-  createPrintedPage();
+  
+  printActions();
 }
 
 // Returns true if the question has already been answered.
@@ -119,16 +134,12 @@ function ask(message, questionId) {
   return false;
 }
 
-var actionList = [];
-
 function clearActionList() {
   actionList = [];
 }
 
 function addAction(messageNum) {
   actionList.push(messageNum);
-
-  displayActions();
 }
 
 function initializeActions() {
@@ -141,14 +152,14 @@ function initializeActions() {
     'but you must initiate the insurance process.';
   
   actions[2] = 
-    'Submit application for ' +
+    'Apply for ' +
     '<a href="http://www.disasterassistance.gov">' +
     'FEMA assistance</a>. ' +
     'Complete the application as best you can given your current insurance ' +
     'coverage information';
   
   actions[3] = 
-    'Submit application for ' +
+    'Apply for ' +
     '<a href="http://www.disasterassistance.gov">' +
     'FEMA assistance</a>. ';
   
@@ -162,7 +173,7 @@ function initializeActions() {
   
   actions[5] = 
     'Apply for ' +
-    '<a href="http://www.labor.ny.gov/ui/claimantinfo/disaster-unemploymentassistance.shtm">' +
+    '<a href="http://www.labor.ny.gov/ui/claimantinfo/disaster-unemployment-assistance.shtm">' +
     'Disaster Unemployment Assistance (DUA)</a>.';
   
   actions[6] = 
@@ -176,26 +187,64 @@ function initializeActions() {
   
   actions[9] =
     'Seek legal assistance from a pro bono provider. ' +
-    '(e.g., <a href="http://nylag.org/units/stormresponse-unit/">' +
+    '(e.g., <a href="http://nylag.org/units/storm-response-unit/">' +
     'NYLAG Storm Response Unit</a>)';
 }
 
-function displayActions() {
+function printActions() {
   var ol = $('<ol>');
 
   $('#actions')
     .empty()
     .append(ol);
-  
+
   for (var i = 0; i < actionList.length; ++i) {
     ol.append($('<li>')
 	      .addClass('action-text')
 	      .html(actions[actionList[i]]));
   }
-}
+  window.location.hash = VERSION + toAlpha(actionList);
 
-function createPrintedPage() {
   $('#actions').animate({
       'left' : 0
   }, 500);
+}
+
+function toAlpha(list) {
+  var bitmask = 0;
+  for (var i = 0; i < list.length; ++i) {
+    bitmask |= 1 << list[i];
+  }
+
+  var string = '';
+  while (1) {
+    if (bitmask == 0) {
+      return string;
+    }
+    
+    string += String.fromCharCode('a'.charCodeAt(0) + (bitmask % 26));
+    bitmask = Math.floor(bitmask / 26);
+  }
+}
+
+function setActionListFromHash() {
+  // trim off # and VERSION
+  actionList = fromAlpha(window.location.hash.substring(2));
+}
+
+function fromAlpha(string) {
+  var number = 0;
+  for (var i = string.length - 1; i >= 0; --i) {
+    number *= 26;
+    number += string.charCodeAt(i) - 'a'.charCodeAt(0);
+  }
+
+  var list = [];
+  for (var i = 0; i < actions.length; ++i) {
+    if (number & (1 << i)) {
+      list.push(i);
+    }
+  }
+
+  return list;
 }
