@@ -13,7 +13,7 @@ window.onhashchange = checkHash;
 function checkHash() {
   clearActionList();
 
-  if (window.location.hash === undefined || 
+  if (window.location.hash === undefined ||
       window.location.hash == '') {
     askQuestions();
   } else {
@@ -23,34 +23,34 @@ function checkHash() {
 }
 
 function askQuestions() {
-  
+
   if (!ask('Have you experienced losses related to Hurricane Sandy?', 'losses')) {
     return;
   }
-  
+
   if (!answers.losses) {
     addAction(0);
     printActions();
     return;
   }
-  
+
   if (!ask('Do you have private property insurance?', 'propertyIinsurance')) {
     return;
   }
-  
+
   if (answers.propertyInsurance) {
     addAction(1);
     addAction(2);
   } else {
     addAction(3);
   }
-  
+
   addAction(4);
-  
+
   if (!ask('Have you lost work, time employment, or income due to the hurricane?', 'income')) {
     return;
   }
-  
+
   if (answers.income) {
     if (!ask('Do you live in New York State?', 'newYork')) {
       return;
@@ -58,16 +58,16 @@ function askQuestions() {
     if (answers.newYork) {
       addAction(5);
     }
-    
+
     // TODO: anything for other states?
   }
-  
+
   if (!ask('Have you lost health insurance due to the hurricane?', 'health')) {
     return;
   }
   if (answers.health) {
     addAction(6);
-    
+
     if (!ask('Are you eligible for Medicaid?', 'medicaid')) {
       return;
     }
@@ -82,7 +82,7 @@ function askQuestions() {
       addAction(8);
     }
   }
-  
+
   if (!ask('Are you experiencing any of the following: <ul>' +
 	   '<li>problems with mortgage or creditors' +
 	   '<li>problems with insurance claims' +
@@ -90,11 +90,11 @@ function askQuestions() {
 	   'legal')) {
     return;
   }
-  
+
   if (answers.legal) {
     addAction(9);
   }
-  
+
   printActions();
 }
 
@@ -131,6 +131,10 @@ function ask(message, questionId) {
     .append(yesButton)
     .append(noButton);
 
+  var offsetWidth = $(window).width();
+  $('#actions').css({
+    'left' : offsetWidth
+  });
   return false;
 }
 
@@ -143,48 +147,48 @@ function addAction(messageNum) {
 }
 
 function initializeActions() {
-  actions[0] = 
+  actions[0] =
     'If you are still in need of assistance, call xxx to speak with a social worker';
-  
-  actions[1] = 
+
+  actions[1] =
     'Submit a claim to your private insurance plan for any eligible damages. ' +
     'You do not have to hear back to move onto the next steps, ' +
     'but you must initiate the insurance process.';
-  
-  actions[2] = 
+
+  actions[2] =
     'Apply for ' +
     '<a href="http://www.disasterassistance.gov">' +
     'FEMA assistance</a>. ' +
     'Complete the application as best you can given your current insurance ' +
     'coverage information';
-  
-  actions[3] = 
+
+  actions[3] =
     'Apply for ' +
     '<a href="http://www.disasterassistance.gov">' +
     'FEMA assistance</a>. ';
-  
-  actions[4] = 
+
+  actions[4] =
     'Apply for ' +
     '<a href="http://disasterloan.sba.gov/ela">' +
     'low-interest Disaster Loans</a>' +
     ' through the Small Business Administration.'
     'You do not have to take any loan offered to you, ' +
     'but you must initiate the application process';
-  
-  actions[5] = 
+
+  actions[5] =
     'Apply for ' +
     '<a href="http://www.labor.ny.gov/ui/claimantinfo/disaster-unemployment-assistance.shtm">' +
     'Disaster Unemployment Assistance (DUA)</a>.';
-  
-  actions[6] = 
+
+  actions[6] =
     'Apply for <a href="https://a858-ihss.nyc.gov/">Family Health Plus</a>.';
-  
-  actions[7] = 
+
+  actions[7] =
     'Apply for <a href="https://a858-ihss.nyc.gov/">Medicaid</a>.';
-  
-  actions[8] = 
+
+  actions[8] =
     'Apply for <a href="https://a858-ihss.nyc.gov/">Child Health Plus</a>.';
-  
+
   actions[9] =
     'Seek legal assistance from a pro bono provider. ' +
     '(e.g., <a href="http://nylag.org/units/storm-response-unit/">' +
@@ -221,7 +225,7 @@ function toAlpha(list) {
     if (bitmask == 0) {
       return string;
     }
-    
+
     string += String.fromCharCode('a'.charCodeAt(0) + (bitmask % 26));
     bitmask = Math.floor(bitmask / 26);
   }
