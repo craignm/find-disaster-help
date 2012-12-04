@@ -107,7 +107,7 @@ function ask(message, questionId) {
   var yesButton = $('<a href="#" class="button">')
     .addClass('yes-button')
     .text('Yes')
-    .click(function() {
+    .click(function(event) {
       event.preventDefault();
       answers[questionId] = true;
       askQuestions();
@@ -116,7 +116,7 @@ function ask(message, questionId) {
   var noButton = $('<a href="#" class="button">')
     .addClass('no-button')
     .text('No')
-    .click(function() {
+    .click(function(event) {
       event.preventDefault();
       answers[questionId] = false;
       askQuestions();
