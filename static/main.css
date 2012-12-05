@@ -22,8 +22,17 @@ body{
 
 .button{
   border:1px solid #aaa;
+  background:#eee;
   background:-webkit-linear-gradient(#fff, #eee);
+  background:-moz-linear-gradient(#fff, #eee);
+  background:-ms-linear-gradient(#fff, #eee);
+  background:-o-linear-gradient(#fff, #eee);
+  background:linear-gradient(#fff, #eee);
   text-align:center;
+  -webkit-border-radius:2px;
+  -moz-border-radius:2px;
+  -ms-border-radius:2px;
+  -o-border-radius:2px;
   border-radius:2px;
   display:inline-block;
   padding:12px 54px;
@@ -34,6 +43,10 @@ body{
 }
 
 .button:active{
+  -webkit-box-shadow:inset 0 2px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow:inset 0 2px 3px rgba(0,0,0,0.5);
+  -ms-box-shadow:inset 0 2px 3px rgba(0,0,0,0.5);
+  -o-box-shadow:inset 0 2px 3px rgba(0,0,0,0.5);
   box-shadow:inset 0 2px 3px rgba(0,0,0,0.5);
 }
 
@@ -53,6 +66,10 @@ body{
   width:100%;
   border-bottom:1px solid #aaa;
   z-index:10;
+  -webkit-box-shadow:0 0 8px rgba(0,0,0,0.15);
+  -moz-box-shadow:0 0 8px rgba(0,0,0,0.15);
+  -ms-box-shadow:0 0 8px rgba(0,0,0,0.15);
+  -o-box-shadow:0 0 8px rgba(0,0,0,0.15);
   box-shadow:0 0 8px rgba(0,0,0,0.15);
 }
 
@@ -70,6 +87,10 @@ body{
   margin:6px 30px;
   display:block;
   padding:10px 15px;
+  -webkit-border-radius:2px;
+  -moz-border-radius:2px;
+  -ms-border-radius:2px;
+  -o-border-radius:2px;
   border-radius:2px;
   font-weight:bold;
 }
@@ -115,6 +136,10 @@ body{
   z-index:8;
   padding:10px 0;
   text-align:center;
+  -webkit-box-shadow:0 0 3px rgba(0,0,0,0.25);
+  -moz-box-shadow:0 0 3px rgba(0,0,0,0.25);
+  -ms-box-shadow:0 0 3px rgba(0,0,0,0.25);
+  -o-box-shadow:0 0 3px rgba(0,0,0,0.25);
   box-shadow:0 0 3px rgba(0,0,0,0.25);
   font-family:'Share Tech', sans-serif;
 }
@@ -138,6 +163,10 @@ body{
   line-height:26px;
   background:#fff;
   -webkit-overflow-scrolling: touch;
+  -moz-overflow-scrolling: touch;
+  -ms-overflow-scrolling: touch;
+  -o-overflow-scrolling: touch;
+  overflow-scrolling: touch;
 }
 
 #actions a{
@@ -145,6 +174,10 @@ body{
 }
 
 #actions a:active{
+  -webkit-box-shadow:inset 0 2px 3px rgba(0,0,0,0.5);
+  -moz-box-shadow:inset 0 2px 3px rgba(0,0,0,0.5);
+  -ms-box-shadow:inset 0 2px 3px rgba(0,0,0,0.5);
+  -o-box-shadow:inset 0 2px 3px rgba(0,0,0,0.5);
   box-shadow:inset 0 2px 3px rgba(0,0,0,0.5);
 }
 
@@ -159,12 +192,21 @@ body{
 }
 
 .bookmark span{
+  background:#83a342;
   background:-webkit-linear-gradient(#9ac138, #83a342);
+  background:-moz-linear-gradient(#9ac138, #83a342);
+  background:-ms-linear-gradient(#9ac138, #83a342);
+  background:-o-linear-gradient(#9ac138, #83a342);
+  background:linear-gradient(#9ac138, #83a342);
   color:#fff;
   border:1px solid #5d742c;
   text-shadow:0 1px 1px #000;
   text-decoration: none;
   padding:1px 3px;
+  -webkit-border-radius:2px;
+  -moz-border-radius:2px;
+  -ms-border-radius:2px;
+  -o-border-radius:2px;
   border-radius:2px;
 }
 
@@ -175,14 +217,24 @@ body{
 }
 
 .no-button {
+  background:#c85230;
   background:-webkit-linear-gradient(#f56534, #c85230);
+  background:-moz-linear-gradient(#f56534, #c85230);
+  background:-ms-linear-gradient(#f56534, #c85230);
+  background:-o-linear-gradient(#f56534, #c85230);
+  background:linear-gradient(#f56534, #c85230);
   border:1px solid #8f361f;
   text-shadow:0 1px 1px #000;
   color:#fff;
 }
 
 .yes-button {
+  background:#83a342;
   background:-webkit-linear-gradient(#9ac138, #83a342);
+  background:-moz-linear-gradient(#9ac138, #83a342);
+  background:-ms-linear-gradient(#9ac138, #83a342);
+  background:-o-linear-gradient(#9ac138, #83a342);
+  background:linear-gradient(#9ac138, #83a342);
   color:#fff;
   border:1px solid #5d742c;
   text-shadow:0 1px 1px #000;
