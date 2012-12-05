@@ -104,7 +104,9 @@ function ask(message, questionId) {
     return true;
   }
 
-  var yesButton = $('<a href="#" class="button">')
+  var yesButton = $('<a>')
+    .attr('href', '#')
+    .addClass('button')
     .addClass('yes-button')
     .text('Yes')
     .click(function(e) {
@@ -113,7 +115,9 @@ function ask(message, questionId) {
       askQuestions();
     });
 
-  var noButton = $('<a href="#" class="button">')
+  var noButton = $('<a>')
+    .attr('href', '#')
+    .addClass('button')
     .addClass('no-button')
     .text('No')
     .click(function(e) {
@@ -122,10 +126,13 @@ function ask(message, questionId) {
       askQuestions();
     });
 
+  var questionDiv = $('<div>').html(message)
+      .addClass('question');
+
   $('#content')
     .empty()
-    .append($('<div>').html(message)
-    .addClass('question'));
+    .append(questionDiv);
+
   $('#controls')
     .empty()
     .append(yesButton)

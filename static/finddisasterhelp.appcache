@@ -1,11 +1,12 @@
 CACHE MANIFEST
-# version: 6
+# version: 111111
 index.html
 main.css
 main.js
 favicon.ico
 sharetech.ttf
 jquery.min.js
+jquery.js
 images/gray_jean.png
 images/gray_jean_2x.jpg
 images/linedpaper.png
