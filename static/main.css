@@ -159,9 +159,10 @@ body{
   top:0;
   width:100%;
   height:100%;
-  z-index:9;
+  z-index:7;
   line-height:26px;
   background:#fff;
+  overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   -moz-overflow-scrolling: touch;
   -ms-overflow-scrolling: touch;
@@ -238,6 +239,19 @@ body{
   color:#fff;
   border:1px solid #5d742c;
   text-shadow:0 1px 1px #000;
+}
+
+.start-over-button {
+  background:#c85230;
+  background:-webkit-linear-gradient(#f56534, #c85230);
+  background:-moz-linear-gradient(#f56534, #c85230);
+  background:-ms-linear-gradient(#f56534, #c85230);
+  background:-o-linear-gradient(#f56534, #c85230);
+  background:linear-gradient(#f56534, #c85230);
+  border:1px solid #8f361f;
+  text-shadow:0 1px 1px #000;
+  color:#fff;
+  width:100px;
 }
 
 .question {
